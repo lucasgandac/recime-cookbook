@@ -22,6 +22,9 @@ CREATE TABLE recipe_ingredient (
     PRIMARY KEY (recipe_id, ingredient_id)
 );
 
+CREATE INDEX idx_recipe_ingredient_ingredient_id ON recipe_ingredient(ingredient_id);
+CREATE INDEX idx_recipe_ingredient_recipe_id ON recipe_ingredient(recipe_id);
+
 INSERT INTO ingredient (name) VALUES
 ('Spaghetti'),
 ('Ground beef'),
