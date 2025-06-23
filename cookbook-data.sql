@@ -30,21 +30,21 @@ INSERT INTO recipe (title, description, instruction, vegetarian, servings) VALUE
  true, 1);
 
 INSERT INTO recipe_ingredient (recipe_id, ingredient) VALUES
-(1, 'Spaghetti'),
-(1, 'Ground beef'),
-(1, 'Tomato sauce'),
-(1, 'Onion'),
-(1, 'Garlic');
+(1, 'spaghetti'),
+(1, 'ground beef'),
+(1, 'tomato sauce'),
+(1, 'onion'),
+(1, 'garlic');
 
 INSERT INTO recipe_ingredient (recipe_id, ingredient) VALUES
-(2, 'Quinoa'),
-(2, 'Tomato'),
-(2, 'Cucumber'),
-(2, 'Parsley'),
-(2, 'Lemon juice');
+(2, 'quinoa'),
+(2, 'tomato'),
+(2, 'cucumber'),
+(2, 'parsley'),
+(2, 'lemon juice');
 
 INSERT INTO recipe_ingredient (recipe_id, ingredient) VALUES
-(3, 'Eggs'),
-(3, 'Bell pepper'),
-(3, 'Onion'),
-(3, 'Tomato');
+(3, 'eggs'),
+(3, 'bell pepper'),
+(3, 'onion'),
+(3, 'tomato');

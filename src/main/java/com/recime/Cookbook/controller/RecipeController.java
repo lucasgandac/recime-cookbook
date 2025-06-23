@@ -3,8 +3,12 @@ package com.recime.Cookbook.controller;
 import com.recime.Cookbook.dto.RecipeDTO;
 import com.recime.Cookbook.mapper.RecipeMapper;
 import com.recime.Cookbook.model.Recipe;
+import com.recime.Cookbook.repository.criteria.params.RecipeParams;
 import com.recime.Cookbook.service.RecipeService;
 import lombok.RequiredArgsConstructor;
+
+import org.springdoc.core.annotations.ParameterObject;
+import org.hibernate.annotations.Parameter;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
@@ -48,5 +52,16 @@ public class RecipeController {
         }
         recipeService.deleteRecipe(id);
         return ResponseEntity.noContent().build();
+    }
+
+    @GetMapping("/search")
+    public ResponseEntity<List<RecipeDTO>> searchRecipes(
+            @ParameterObject RecipeParams recipeParams
+    ) {
+        List<Recipe> filtered = recipeService.getFilteredRecipes(recipeParams);
+        List<RecipeDTO> result = filtered.stream()
+                .map(RecipeMapper::toDTO)
+                .collect(Collectors.toList());
+        return ResponseEntity.ok(result);
     }
 }
