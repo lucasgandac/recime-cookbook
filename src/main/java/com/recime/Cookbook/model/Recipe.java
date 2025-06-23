@@ -22,11 +22,6 @@ public class Recipe {
     private boolean vegetarian;
     private int servings;
 
-    @ManyToMany
-    @JoinTable(
-            name="recipe_ingredients",
-            joinColumns = @JoinColumn(name="recipe_id"),
-            inverseJoinColumns = @JoinColumn(name = "ingredient_id")
-    )
-    private List<Ingredient> ingredients;
+    @ElementCollection
+    private List<String> ingredient;
 }

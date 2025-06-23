@@ -1,5 +1,4 @@
-DROP TABLE IF EXISTS recipe_ingredient;
-DROP TABLE IF EXISTS ingredient;
+DROP TABLE IF EXISTS recipe_ingredients;
 DROP TABLE IF EXISTS recipe;
 
 CREATE TABLE recipe (
@@ -10,34 +9,12 @@ CREATE TABLE recipe (
     vegetarian BOOLEAN NOT NULL,
     servings INTEGER NOT NULL
 );
-
-CREATE TABLE ingredient (
-    id SERIAL PRIMARY KEY,
-    name VARCHAR(100) UNIQUE NOT NULL
-);
-
 CREATE TABLE recipe_ingredient (
     recipe_id INTEGER REFERENCES recipe(id) ON DELETE CASCADE,
-    ingredient_id INTEGER REFERENCES ingredient(id) ON DELETE CASCADE,
-    PRIMARY KEY (recipe_id, ingredient_id)
+    ingredient VARCHAR(255)
 );
 
-CREATE INDEX idx_recipe_ingredient_ingredient_id ON recipe_ingredient(ingredient_id);
-CREATE INDEX idx_recipe_ingredient_recipe_id ON recipe_ingredient(recipe_id);
-
-INSERT INTO ingredient (name) VALUES
-('Spaghetti'),
-('Ground beef'),
-('Tomato sauce'),
-('Onion'),
-('Garlic'),
-('Quinoa'),
-('Tomato'),
-('Cucumber'),
-('Parsley'),
-('Lemon juice'),
-('Eggs'),
-('Bell pepper');
+CREATE INDEX idx_recipe_title ON recipe(title);
 
 INSERT INTO recipe (title, description, instruction, vegetarian, servings) VALUES
 ('Spaghetti Bolognese', 'Traditional Italian pasta with meat sauce.',
@@ -52,22 +29,22 @@ INSERT INTO recipe (title, description, instruction, vegetarian, servings) VALUE
  'Beat the eggs. Sauté the vegetables. Add the eggs and cook until set.',
  true, 1);
 
-INSERT INTO recipe_ingredient (recipe_id, ingredient_id) VALUES
-(1, (SELECT id FROM ingredient WHERE name = 'Spaghetti')),
-(1, (SELECT id FROM ingredient WHERE name = 'Ground beef')),
-(1, (SELECT id FROM ingredient WHERE name = 'Tomato sauce')),
-(1, (SELECT id FROM ingredient WHERE name = 'Onion')),
-(1, (SELECT id FROM ingredient WHERE name = 'Garlic'));
+INSERT INTO recipe_ingredient (recipe_id, ingredient) VALUES
+(1, 'Spaghetti'),
+(1, 'Ground beef'),
+(1, 'Tomato sauce'),
+(1, 'Onion'),
+(1, 'Garlic');
 
-INSERT INTO recipe_ingredient (recipe_id, ingredient_id) VALUES
-(2, (SELECT id FROM ingredient WHERE name = 'Quinoa')),
-(2, (SELECT id FROM ingredient WHERE name = 'Tomato')),
-(2, (SELECT id FROM ingredient WHERE name = 'Cucumber')),
-(2, (SELECT id FROM ingredient WHERE name = 'Parsley')),
-(2, (SELECT id FROM ingredient WHERE name = 'Lemon juice'));
+INSERT INTO recipe_ingredient (recipe_id, ingredient) VALUES
+(2, 'Quinoa'),
+(2, 'Tomato'),
+(2, 'Cucumber'),
+(2, 'Parsley'),
+(2, 'Lemon juice');
 
-INSERT INTO recipe_ingredient (recipe_id, ingredient_id) VALUES
-(3, (SELECT id FROM ingredient WHERE name = 'Eggs')),
-(3, (SELECT id FROM ingredient WHERE name = 'Bell pepper')),
-(3, (SELECT id FROM ingredient WHERE name = 'Onion')),
-(3, (SELECT id FROM ingredient WHERE name = 'Tomato'));
+INSERT INTO recipe_ingredient (recipe_id, ingredient) VALUES
+(3, 'Eggs'),
+(3, 'Bell pepper'),
+(3, 'Onion'),
+(3, 'Tomato');
