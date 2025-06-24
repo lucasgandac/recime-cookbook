@@ -158,12 +158,20 @@ GET /api/recipes/search?vegetarian=true&includeIngredients=Tomato,Onion&contentS
 
 ---
 
+## 🧪 Tests
+
+Basic unit tests were added to validate essential functionality such as recipe creation, retrieval, deletion, and exception handling. These tests cover the RecipeController and RecipeService layers using JUnit 5 and Mockito.
+
+While the current tests ensure core flows are functional, expanding test coverage and depth — including more detailed filtering scenarios, integration tests, and edge case validations — could further improve the reliability and robustness of the project.
+
+---
+
 ## 🧾 TODO – Next Steps & Improvements
 
 These are the next steps I would take to evolve the application, making it more reliable and robust:
 
 -  **Test Coverage**  
-  Implement unit, integration, and end-to-end tests using JUnit and Testcontainers to ensure reliability and prevent regressions.
+  Implement unit, integration, and end-to-end tests to ensure reliability and increase coverage.
 
 -  **Code Coverage Monitoring**  
   Integrate tools like JaCoCo to monitor and enforce code coverage thresholds for continuous quality assurance.
