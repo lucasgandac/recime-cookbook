@@ -30,6 +30,17 @@ This is a Java Spring Boot project that exposes a RESTful API for managing cooki
 
 ---
 
+## 📦 Deliverables
+
+This repository delivers:
+- A complete Spring Boot application with CRUD and filtering functionality
+- Dockerized environment (PostgreSQL + App)
+- Sample data automatically loaded at startup
+- Modular and scalable architecture
+- Basic error handling and custom exception responses
+
+---
+
 ## 🧱 Architecture
 
 The project follows a **Layered Architecture** for maintainability and scalability:
@@ -39,6 +50,7 @@ The project follows a **Layered Architecture** for maintainability and scalabili
 * **Repository Layer**: Data access logic using JPA
 * **Model & DTOs**: Separation of domain and data transfer objects
 * **Mapper Layer**: Converts between Entity and DTO representations
+* **Exception Layer**: Handles errors consistently via @RestControllerAdvice
 
 This separation of concerns makes the codebase modular, testable, and easier to maintain.
 
@@ -137,7 +149,7 @@ Query Parameters:
 * `contentSearch`: keyword inside instruction
 
 
-FIltering Sample
+Filtering Sample
 
 
 ```
@@ -146,11 +158,21 @@ GET /api/recipes/search?vegetarian=true&includeIngredients=Tomato,Onion&contentS
 
 ---
 
-## 🧾 TODO (Optional Improvements)
+## 🧾 TODO – Next Steps & Improvements
 
-* Add Swagger documentation
-* Add input validation with exception handling
-* Add integration tests with Testcontainers
-* Add authentication (e.g. JWT or Basic Auth)
+These are the next steps I would take to evolve the application, making it more reliable and robust:
+
+-  **Test Coverage**  
+  Implement unit, integration, and end-to-end tests using JUnit and Testcontainers to ensure reliability and prevent regressions.
+
+-  **Code Coverage Monitoring**  
+  Integrate tools like JaCoCo to monitor and enforce code coverage thresholds for continuous quality assurance.
+
+-  **Authentication & Authorization**  
+  Secure the API using JWT or Basic Auth, and introduce role-based access control if needed (e.g., Admin vs User).
+
+-  **Update (PUT/PATCH) Endpoint**  
+  Add support for editing existing recipes, both full replacements (`PUT`) and partial updates (`PATCH`).
+
 
 ---

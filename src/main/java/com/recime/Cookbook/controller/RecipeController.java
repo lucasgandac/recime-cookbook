@@ -1,6 +1,8 @@
 package com.recime.Cookbook.controller;
 
 import com.recime.Cookbook.dto.RecipeDTO;
+import com.recime.Cookbook.exception.RecipeCreationException;
+import com.recime.Cookbook.exception.RecipeNotFoundException;
 import com.recime.Cookbook.mapper.RecipeMapper;
 import com.recime.Cookbook.model.Recipe;
 import com.recime.Cookbook.repository.criteria.params.RecipeParams;
@@ -35,20 +37,25 @@ public class RecipeController {
         return recipeService.getRecipeById(id)
                 .map(RecipeMapper::toDTO)
                 .map(ResponseEntity::ok)
-                .orElse(ResponseEntity.notFound().build());
+                .orElseThrow(() -> new RecipeNotFoundException("Recipe with id " + id.toString() + " not found"));
     }
 
     @PostMapping
     public ResponseEntity<RecipeDTO> create(@RequestBody RecipeDTO dto) {
-        Recipe recipe = RecipeMapper.toEntity(dto);
-        Recipe saved = recipeService.saveRecipe(recipe);
-        return ResponseEntity.ok(RecipeMapper.toDTO(saved));
+        try {
+            Recipe recipe = RecipeMapper.toEntity(dto);
+            Recipe saved = recipeService.saveRecipe(recipe);
+            return ResponseEntity.ok(RecipeMapper.toDTO(saved));
+        }
+        catch (Exception e){
+            throw new RecipeCreationException("Recipe could not be created: " + e.getMessage());
+        }
     }
 
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> delete(@PathVariable Long id) {
         if (!recipeService.exists(id)) {
-            return ResponseEntity.notFound().build();
+            throw new RecipeNotFoundException("Recipe with id " + id.toString() + " not found");
         }
         recipeService.deleteRecipe(id);
         return ResponseEntity.noContent().build();
