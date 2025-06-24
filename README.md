@@ -86,11 +86,10 @@ Running `docker-compose up` will:
 
 * Docker
 * Docker Compose
-* Maven
 
 First build the project
 ```bash
-mvn clean package
+./mvnw clean package
 ```
 
 
@@ -169,7 +168,7 @@ The tests are located under src/test/java and organized by layer, with mocks and
 
 To execute them:
 ```
-mvn test
+./mvnw clean test
 ```
 
 ---
