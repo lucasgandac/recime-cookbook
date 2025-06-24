@@ -86,10 +86,11 @@ Running `docker-compose up` will:
 
 * Docker
 * Docker Compose
+* Maven
 
-First compile the project
+First build the project
 ```bash
-./gradlew clean build
+mvn clean package
 ```
 
 
@@ -164,11 +165,18 @@ Basic unit tests were added to validate essential functionality such as recipe c
 
 While the current tests ensure core flows are functional, expanding test coverage and depth — including more detailed filtering scenarios, integration tests, and edge case validations — could further improve the reliability and robustness of the project.
 
+The tests are located under src/test/java and organized by layer, with mocks and assertions using JUnit and Mockito.
+
+To execute them:
+```
+mvn test
+```
+
 ---
 
 ## 🧾 TODO – Next Steps & Improvements
 
-These are the next steps I would take to evolve the application, making it more reliable and robust:
+These are some possible improvements that could enhance the application’s robustness and maintainability::
 
 -  **Test Coverage**  
   Implement unit, integration, and end-to-end tests to ensure reliability and increase coverage.
